@@ -1,22 +1,19 @@
+
 workflows:
   android-apk-build:
     name: Build Sumit Editor APK
     max_build_duration: 30
     instance_type: mac_mini_m1
     environment:
+      android_ndk: default
       java: 17
     scripts:
-      - name: Set up build tools
+      - name: Set up Gradlew Executable
         script: |
-          chmod +x gradlew || true
+          chmod +x gradlew
       - name: Build Android APK
         script: |
-          if [ -f "./gradlew" ]; then
-            ./gradlew assembleDebug
-          else
-            flutter build apk --debug
-          fi
+          ./gradlew assembleDebug --stacktrace
     artifacts:
       - app/build/outputs/apk/**/*.apk
-      - build/app/outputs/flutter-apk/*.apk
       
