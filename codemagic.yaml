@@ -1,11 +1,9 @@
-
 workflows:
   android-apk-build:
     name: Build Sumit Editor APK
     max_build_duration: 30
     instance_type: mac_mini_m1
     environment:
-      android_ndk: default
       java: 17
     scripts:
       - name: Set up Gradlew Executable
@@ -13,7 +11,7 @@ workflows:
           chmod +x gradlew
       - name: Build Android APK
         script: |
-          ./gradlew assembleDebug --stacktrace
+          ./gradlew assembleDebug
     artifacts:
       - app/build/outputs/apk/**/*.apk
       
