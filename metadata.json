@@ -1,0 +1,6 @@
+{
+  "name": "Sumit's Editor",
+  "description": "Professional photo editor by Sumit Bhumihar with AI enhancement and advanced color grading.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
