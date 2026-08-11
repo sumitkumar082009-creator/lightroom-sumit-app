@@ -9,9 +9,9 @@ jobs:
       with:
         distribution: "temurin"
         java-version: "17"
+    - run: keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
     - run: chmod +x gradlew
-    - run: ./gradlew assembleDebug
+    - run: ./gradlew assembleDebug -Djava.awt.headless=true --no-daemon
     - uses: actions/upload-artifact@v4
       with:
         name: my-app-apk
-        path: app/build/outputs/apk/debug/*.apk
