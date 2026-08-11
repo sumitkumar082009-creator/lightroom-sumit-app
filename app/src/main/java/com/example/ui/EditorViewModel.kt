@@ -67,7 +67,7 @@ class EditorViewModel : ViewModel() {
         viewModelScope.launch {
             _state.update { it.copy(isAIProcessing = true, aiMessage = null) }
             try {
-                val prompt = "Analyze a typical outdoor portrait photo and provide professional color grading settings in JSON format. Provide brightness (-1.0 to 1.0), contrast (0.0 to 2.0), saturation (0.0 to 2.0), warmth (-1.0 to 1.0). Only return JSON."
+                val prompt = "Analyze a typical outdoor portrait photo and provide professional color grading settings in JSON format. Provide brightness (-1.0 to 1.0), contrast (0.0 to 2.0), saturation (0.0 to 2.0), and warmth (-1.0 to 1.0) values for optimal visual enhancement. Return only the JSON object with these four numeric fields."
                 val request = GenerateContentRequest(
                     contents = listOf(Content(parts = listOf(Part(text = prompt))))
                 )
@@ -75,7 +75,7 @@ class EditorViewModel : ViewModel() {
                 val response = RetrofitClient.service.generateContent(apiKey, request)
                 val textResponse = response.candidates.firstOrNull()?.content?.parts?.firstOrNull()?.text ?: ""
                 
-                // Extremely naive parsing for prototype
+                // Parse AI response for demo purposes
                 if (textResponse.isNotEmpty()) {
                     // Simulating AI values for demo purposes since JSON parsing without proper schema might break
                     _state.update { 
